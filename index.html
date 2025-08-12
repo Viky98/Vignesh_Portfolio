@@ -1,140 +1,354 @@
-/*
-Updated Portfolio for Vignesh Sridhar
-- Includes real photo, GitHub, LinkedIn, Email, Resume
-- Ready for deploy
-*/
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignesh Sridhar - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-title {
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #21a1f1, #38bdf8);
+            border-radius: 9999px;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #23272d;
+            color: #58a6ff;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin: 0.25rem;
+            border: 1px solid #30363d;
+        }
+        .social-link {
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .social-link:hover {
+            transform: scale(1.1);
+            color: #21a1f1;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-image {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+    </style>
+</head>
+<body>
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, DownloadCloud, Github, Linkedin } from 'lucide-react';
-import profilePhoto from './1103.JPG'; // Ensure this file is placed in public or src folder
-
-export default function Portfolio() {
-  const projects = [
-    {
-      title: 'Intelligent Fashion Recommendation System',
-      desc: 'Built a data pipeline for 40,000 fashion images using Python, SQL, and ML. Integrated YOLOv8 & Google Vision AI for personalized recommendations.',
-      tags: ['Python', 'ML', 'Azure', 'AI'],
-      link: 'https://github.com/Viky98/MSDS458-AI-Final-Project'
-    },
-    {
-      title: 'Fake News Detection Using Deep Learning',
-      desc: 'Developed Bi-LSTM, CNN, GRU, and BERT models for scalable fake news detection to combat misinformation.',
-      tags: ['Python', 'Deep Learning', 'BERT'],
-      link: 'https://github.com/Viky98/MSDSP453-NLP-Final_Project'
-    },
-    {
-      title: 'Amazon Review Insights through NLP Analysis',
-      desc: 'Combined sentiment analysis, review summarization, and hybrid filtering for antivirus recommendations.',
-      tags: ['Python', 'NLP', 'Recommendation Systems'],
-      link: '#'
-    }
-  ];
-
-  const skills = [
-    'Azure PaaS', 'Azure DevOps', 'CI/CD', 'Incident Management', 'Python', 'SQL', 'AI/ML', 'Monitoring & Observability', 'Docker'
-  ];
-
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="max-w-5xl mx-auto px-6 py-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold">Vignesh Sridhar</h1>
-          <p className="text-sm text-slate-600">Cloud Engineer • Azure • DevOps • Data Science</p>
-        </div>
-        <nav className="flex items-center gap-4">
-          <a href="#projects" className="text-sm hover:underline">Projects</a>
-          <a href="#experience" className="text-sm hover:underline">Experience</a>
-          <a href="#contact" className="text-sm hover:underline">Contact</a>
-          <a href="/Vignesh_Sridhar_SR_ANALYST.pdf" className="ml-2 inline-flex items-center gap-2 rounded-md border px-3 py-1 text-sm shadow-sm hover:bg-slate-100" download>
-            <DownloadCloud size={16} /> Resume
-          </a>
+    <!-- Header & Navigation -->
+    <header class="bg-gray-800 bg-opacity-70 backdrop-blur-lg sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-white transition-colors hover:text-blue-400">Vignesh Sridhar</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">About</a>
+                <a href="#experience" class="text-gray-300 hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#projects" class="text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-300 hover:text-blue-400 transition-colors">Skills</a>
+                <a href="#awards" class="text-gray-300 hover:text-blue-400 transition-colors">Awards</a>
+                <a href="#education" class="text-gray-300 hover:text-blue-400 transition-colors">Education</a>
+                <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            <button id="menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </nav>
-      </header>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 text-center py-4">
+            <a href="#about" class="block px-4 py-2 text-gray-300 hover:text-blue-400">About</a>
+            <a href="#experience" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Experience</a>
+            <a href="#projects" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Projects</a>
+            <a href="#skills" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Skills</a>
+            <a href="#awards" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Awards</a>
+            <a href="#education" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Education</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-300 hover:text-blue-400">Contact</a>
+        </div>
+    </header>
 
-      <main className="max-w-5xl mx-auto px-6">
-        <section className="grid md:grid-cols-2 gap-8 items-center my-12">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <h2 className="text-4xl sm:text-5xl font-bold leading-tight">Hi, I'm Vignesh — Cloud Engineer & Aspiring SRE</h2>
-            <p className="mt-4 text-slate-600">I design and operate resilient, automated cloud platforms on Microsoft Azure. I blend platform engineering, automation, and data science to deliver reliable systems and measurable business value.</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="#contact" className="inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-md shadow hover:opacity-95">Contact Me</a>
-              <a href="#projects" className="inline-flex items-center gap-2 border px-4 py-2 rounded-md text-sm">View Projects</a>
-            </div>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex items-center justify-center">
-            <img src={profilePhoto} alt="Vignesh Sridhar" className="w-64 h-64 object-cover rounded-2xl shadow-lg" />
-          </motion.div>
-        </section>
-
-        <section id="projects" className="my-12">
-          <h3 className="text-2xl font-semibold mb-4">Selected Projects</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {projects.map((p, i) => (
-              <motion.article key={i} whileHover={{ y: -6 }} className="bg-white p-5 rounded-2xl shadow-sm border">
-                <h4 className="font-semibold">{p.title}</h4>
-                <p className="mt-2 text-sm text-slate-600">{p.desc}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {p.tags.map((t, j) => (
-                    <span key={j} className="text-xs px-2 py-1 bg-slate-100 rounded">{t}</span>
-                  ))}
+    <!-- Hero Section -->
+    <section id="hero" class="py-20 lg:py-32 text-center bg-gray-900 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-left animate-fadeIn max-w-2xl mx-auto text-center">
+                <p class="text-xl text-blue-400 font-semibold mb-2">Hello, I'm</p>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight">Vignesh Sridhar</h1>
+                <h2 class="text-2xl lg:text-3xl font-semibold text-gray-300 mt-2 mb-6">Adv App/Cloud Supp & Eng Sr Analyst</h2>
+                <p class="text-lg text-gray-400 max-w-xl mx-auto mb-8">Experienced IT professional specializing in Azure PaaS and DevOps methodologies. Passionate about driving innovation, fostering continuous improvement, and ensuring operational efficiency.</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#projects" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors">View My Work</a>
+                    <a href="#contact" class="bg-gray-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-600 transition-colors">Contact Me</a>
                 </div>
-                <a href={p.link} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm text-slate-700 hover:underline">View Project</a>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
-        <section id="experience" className="my-12 grid md:grid-cols-2 gap-8">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border">
-            <h3 className="text-xl font-semibold">Skills</h3>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              {skills.map((s, i) => (
-                <div key={i} className="text-sm px-3 py-2 bg-slate-50 rounded">{s}</div>
-              ))}
             </div>
-          </div>
+        </div>
+    </section>
 
-          <div className="bg-white p-6 rounded-2xl shadow-sm border">
-            <h3 className="text-xl font-semibold">Experience Highlights</h3>
-            <ul className="mt-4 space-y-3 text-sm text-slate-700">
-              <li>5+ years in Cloud Application Support & DevOps (Azure PaaS, CI/CD, Incident Mgmt)</li>
-              <li>AZ-104, Power Platform Fundamentals, Dynamics 365 certifications</li>
-              <li>Recognized with Skill Star Award (2024), Extra Mile Award (2022)</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="contact" className="my-12 grid md:grid-cols-2 gap-8 items-start">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border">
-            <h3 className="text-xl font-semibold">Get in touch</h3>
-            <a href="mailto:vikysridhar97@gmail.com" className="inline-flex items-center gap-2 border px-4 py-2 rounded-md mt-3">
-              <Mail size={16} /> vikysridhar97@gmail.com
-            </a>
-            <div className="flex gap-3 mt-3">
-              <a href="https://github.com/Viky98" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm">
-                <Github size={16} /> GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/vignesh-sridhar-95075619a" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm">
-                <Linkedin size={16} /> LinkedIn
-              </a>
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 lg:py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="space-y-12">
+                <!-- Accenture - Sr Analyst -->
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                        <h3 class="text-2xl font-semibold text-blue-400">Adv App/Cloud Supp & Eng Sr Analyst</h3>
+                        <span class="text-sm text-gray-400">June 2024 - Present</span>
+                    </div>
+                    <p class="text-md text-gray-400 mb-4 font-medium">Accenture | Pune, Maharashtra</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-400">
+                        <li>Led strategic planning for scalable Azure cloud infrastructure, aligning with business goals and ensuring compliance with security best practices.</li>
+                        <li>Provided Tier 2/3 support for Azure PaaS, resolving incidents efficiently and conducting in-depth RCA to prevent recurrence.</li>
+                        <li>Conducted Root Cause Analysis (RCA) and implemented proactive monitoring frameworks to enhance system reliability and operational efficiency.</li>
+                        <li>Advocated for cost optimization strategies, reducing cloud expenditures while maintaining high performance.</li>
+                        <li>Prepared comprehensive documentation for cloud infrastructure strategies, promoting knowledge-sharing across teams.</li>
+                    </ul>
+                </div>
+                <!-- Accenture - Analyst -->
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                        <h3 class="text-2xl font-semibold text-blue-400">Adv App/Cloud Supp & Eng Analyst</h3>
+                        <span class="text-sm text-gray-400">Dec 2021 - May 2024</span>
+                    </div>
+                    <p class="text-md text-gray-400 mb-4 font-medium">Accenture | Pune, Maharashtra</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-400">
+                        <li>Maintained robust CI/CD pipelines using Azure DevOps, achieving seamless and efficient application deployments.</li>
+                        <li>Configured and managed diverse Azure services, including virtual machines, storage, and log analytics, ensuring optimal performance and reliability.</li>
+                        <li>Delivered Level 2 and 3 support for Dynamics 365 applications, managing complex incidents and requests to restore services promptly.</li>
+                    </ul>
+                </div>
+                <!-- Accenture - Associate -->
+                <div class="card" style="animation-delay: 0.5s;">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                        <h3 class="text-2xl font-semibold text-blue-400">Adv App/Cloud Supp & Eng Associate</h3>
+                        <span class="text-sm text-gray-400">Sept 2019 - Dec 2021</span>
+                    </div>
+                    <p class="text-md text-gray-400 mb-4 font-medium">Accenture | Bangalore, Karnataka</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-400">
+                        <li>Coordinated and led User Acceptance Testing (UAT) sessions, ensuring smooth adoption of new releases and features.</li>
+                        <li>Acted as Subject Matter Expert for middleware systems, working closely with onshore teams to resolve escalated incidents.</li>
+                    </ul>
+                </div>
             </div>
-          </div>
+        </div>
+    </section>
 
-          <form className="bg-white p-6 rounded-2xl shadow-sm border" action="https://formspree.io/f/yourformid" method="POST">
-            <h3 className="text-xl font-semibold">Message me</h3>
-            <input type="text" name="name" placeholder="Your name" required className="border rounded px-3 py-2 w-full mt-3" />
-            <input type="email" name="email" placeholder="Your email" required className="border rounded px-3 py-2 w-full mt-3" />
-            <textarea name="message" placeholder="Brief message" required className="border rounded px-3 py-2 w-full h-24 mt-3" />
-            <button type="submit" className="mt-4 inline-flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-md">Send message</button>
-          </form>
-        </section>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 lg:py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Intelligent Fashion Recommendation System -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-2">Intelligent Fashion Recommendation System</h3>
+                    <p class="text-sm text-gray-400 mb-4">Dec 2023 - Mar 2024</p>
+                    <p class="text-gray-400 mb-4">Developed an end-to-end data pipeline for 40,000 fashion images/metadata using Python, SQL, and ML, achieving sub-second similarity search. Integrated YOLOv8 and Google Vision AI to deliver personalized fashion recommendations.</p>
+                </div>
+                <!-- Fake News Detection Using Deep Learning -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-2">Fake News Detection Using Deep Learning</h3>
+                    <p class="text-sm text-gray-400 mb-4">Sept 2023 - Nov 2023</p>
+                    <p class="text-gray-400 mb-4">Conducted research on leveraging advanced deep learning techniques, including Bi-LSTM, CNN, GRU, and BERT, to develop accurate and scalable models for fake news detection. Addressed the growing challenge of misinformation.</p>
+                    <a href="https://github.com/Viky98" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+                </div>
+                <!-- Enhancing Amazon Review Insights through NLP Analysis -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold text-blue-400 mb-2">Enhancing Amazon Review Insights through NLP Analysis</h3>
+                    <p class="text-sm text-gray-400 mb-4">June 2023 - Sept 2023</p>
+                    <p class="text-gray-400 mb-4">Developed a robust antivirus product recommendation system combining sentiment analysis, review summarization, and hybrid filtering techniques (SVD, TF-IDF) to enhance user decision-making.</p>
+                    <a href="https://github.com/Viky98" target="_blank" class="text-blue-400 hover:underline"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <footer className="py-12 text-center text-sm text-slate-500">
-          © {new Date().getFullYear()} Vignesh Sridhar — Built with React & Tailwind
-        </footer>
-      </main>
-    </div>
-  );
-}
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 lg:py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Skills & Certifications</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Languages & Technologies -->
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">Languages & Technologies</h3>
+                    <div class="flex flex-wrap">
+                        <span class="badge">Python</span>
+                        <span class="badge">SQL</span>
+                        <span class="badge">Microsoft Azure</span>
+                        <span class="badge">Azure DevOps</span>
+                        <span class="badge">Power BI</span>
+                        <span class="badge">PostgreSQL</span>
+                        <span class="badge">MS Excel</span>
+                        <span class="badge">Scikit-learn</span>
+                        <span class="badge">Pandas</span>
+                        <span class="badge">NumPy</span>
+                    </div>
+                </div>
+                <!-- Tools & Areas -->
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">Tools & Areas of Expertise</h3>
+                    <div class="flex flex-wrap">
+                        <span class="badge">ITSM</span>
+                        <span class="badge">Confluence</span>
+                        <span class="badge">Microsoft Project</span>
+                        <span class="badge">DevOps</span>
+                        <span class="badge">Incident Management</span>
+                        <span class="badge">Cloud Security</span>
+                        <span class="badge">Artificial Intelligence</span>
+                    </div>
+                </div>
+                <!-- Technical Certifications -->
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-4">Certifications</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-400">
+                        <li>Microsoft Certified Power Platform Fundamentals</li>
+                        <li>AZ-104: Microsoft Azure Administrator</li>
+                        <li>MB-300: Dynamics 365 Core Finance and Operations</li>
+                        <li>MB-901: Dynamics 365 Fundamentals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-16 lg:py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-2">Sparkling Start Award</h3>
+                    <p class="text-sm text-gray-500">June 2021</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-2">The Extra Mile Award</h3>
+                    <p class="text-sm text-gray-500">February 2022</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-2">Skill Star Award</h3>
+                    <p class="text-sm text-gray-500">March 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 lg:py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Education</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-2">Master's in Data Science, Specialization in AI</h3>
+                    <p class="text-md text-gray-400">Northwestern University (Distance Learning)</p>
+                    <p class="text-sm text-gray-500">Sept 2022 - March 2024</p>
+                    <p class="text-sm text-gray-500">GPA-3.9</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-blue-400 mb-2">Bachelor of Engineering in Electronics & Telecommunication</h3>
+                    <p class="text-md text-gray-400">Savitribai Phule Pune University</p>
+                    <p class="text-sm text-gray-500">July 2015 - May 2019</p>
+                    <p class="text-sm text-gray-500">CGPA-7.79</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 lg:py-24 bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="max-w-xl mx-auto space-y-6">
+                <p class="text-xl text-gray-400"><i class="fas fa-envelope text-blue-400 mr-2"></i><a href="mailto:vikysridhar97@gmail.com" class="hover:text-blue-400">vikysridhar97@gmail.com</a></p>
+                <p class="text-xl text-gray-400"><i class="fas fa-phone-alt text-blue-400 mr-2"></i><a href="tel:+919096640861" class="hover:text-blue-400">+91 9096640861</a></p>
+                <div class="flex justify-center space-x-6 mt-4">
+                    <a href="https://www.linkedin.com/in/vignesh-sridhar-95075619a/" target="_blank" class="social-link text-gray-300 hover:text-blue-400"><i class="fab fa-linkedin-in text-3xl"></i></a>
+                    <a href="https://github.com/Viky98" target="_blank" class="social-link text-gray-300 hover:text-blue-400"><i class="fab fa-github text-3xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-6 text-center text-gray-500">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 Vignesh Sridhar. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for fade-in cards
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
